@@ -23,6 +23,6 @@
 }
 
 body {
-    color: #040112;
+    background-color: #040112;
     scrollbar-color: var(--dark-pink-gradient);
 }
