@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Imprima");
+
+@font-face {
+    font-family: 'Satoshi';
+    src: url('Satoshi-Variable.ttf') format('truetype');
+}
+
+* {
+    font-family: "Imprima";
+    scrollbar-color: #1a1048;
+}
+
+:root {
+    --black: #040112;
+    --white: white;
+    --violet: #df9aff;
+    --blue-violet: #6825f5;
+    --light-steel-blue: #a4abec;
+    --opacity-text: rgba(255, 255, 255, .6);
+    --midnight-blue: #1a1048;
+    --dark-pink-gradient: #181048;
+    --transparent: rgba(255, 255, 255, 0);
+}
+
+body {
+    color: #040112;
+    scrollbar-color: var(--dark-pink-gradient);
+}
