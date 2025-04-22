@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css?family=Imprima");
+/* ---- reset ---- */
 
+@import url("https://fonts.googleapis.com/css?family=Imprima");
 @font-face {
     font-family: 'Satoshi';
     src: url('Satoshi-Variable.ttf') format('truetype');
@@ -23,6 +24,154 @@
 }
 
 body {
-    background-color: #040112;
-    scrollbar-color: var(--dark-pink-gradient);
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%);
+    transition: 0.5s;
+    padding: 10px;
+    overflow-x: hidden;
+    scrollbar-color: #181048;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+text {
+    color: aliceblue;
+}
+
+canvas {
+    display: block;
+    vertical-align: bottom;
+}
+
+
+/* ---- particles.js container ---- */
+
+#particles-js {
+    position: fixed;
+    top: 0.5;
+    right: 0.5;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    background-repeat: no-repeat;
+    background-size: 20%;
+    background-position: 50% 50%;
+    z-index: -1;
+}
+
+
+/* moving blobs start */
+
+.gradint {
+    width: 400px;
+    height: 300px;
+    border-radius: 100%;
+    position: fixed;
+    filter: blur(200px);
+    background-color: var(--midnight-blue);
+    animation: moveAround 70s infinite ease-in-out;
+}
+
+.gradint,
+.gradint2 {
+    pointer-events: none;
+    z-index: -1;
+}
+
+.gradint2 {
+    width: 200px;
+    height: 300px;
+    border-radius: 100%;
+    position: fixed;
+    filter: blur(200px);
+    background-color: var(--midnight-blue);
+    animation: moveAround2 75s infinite ease-in-out;
+}
+
+@keyframes moveAround {
+    0% {
+        top: 10%;
+        left: 10%;
+    }
+    25% {
+        top: 5%;
+        left: 70%;
+    }
+    50% {
+        top: 80%;
+        left: 90%;
+    }
+    75% {
+        top: 90%;
+        left: 20%;
+    }
+    100% {
+        top: 10%;
+        left: 10%;
+    }
+}
+
+@keyframes moveAround2 {
+    0% {
+        top: 80%;
+        left: 80%;
+    }
+    25% {
+        top: 70%;
+        left: 20%;
+    }
+    50% {
+        top: 10%;
+        left: 30%;
+    }
+    75% {
+        top: 40%;
+        left: 90%;
+    }
+    100% {
+        top: 80%;
+        left: 80%;
+    }
+}
+
+
+/* moving blobs end */
+
+.topbar {
+    position: sticky;
+    width: 100%;
+    height: 10%;
+    background-color: rgba(26, 16, 72, 0.219);
+    border-radius: 120px;
+    z-index: 5;
+    display: flex;
+}
+
+.backdrop-blurred {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+.title-container {
+    justify-content: center;
+    justify-content: flex-start;
+    justify-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 20%;
+    transform: translate(-50%, -50%);
+    translate: -50%, -50%;
+}
+
+.highlight-text {
+    color: var(--blue-violet);
+    font-weight: bolder;
+    text-shadow: blueviolet 0px 0px 13px;
 }
