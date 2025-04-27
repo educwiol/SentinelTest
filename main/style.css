@@ -74,6 +74,17 @@ button:hover {
     box-shadow: var(--color-blue-sky) 0px 0px 15px;
 }
 
+button.active {
+    background-color: var(--color-blue);
+    box-shadow: var(--color-blue) 0px 0px 15px;
+    transition: 0.7s;
+}
+
+button.active:hover {
+    background-color: var(--color-blue-sky);
+    box-shadow: var(--color-blue-sky) 0px 0px 15px;
+}
+
 @keyframes loadInAnimation {
     0% {
         opacity: 0;
@@ -112,10 +123,14 @@ canvas {
     justify-content: center;
 }
 
-.navbar-logo img,
-.navbar-logo svg {
+.navbar-logo img {
     width: 75px;
     height: 70px;
+    transition: 0.25s;
+}
+
+.navbar-logo img:hover {
+    transform: scale(1.05);
 }
 
 
@@ -181,17 +196,15 @@ main {
     outline: none;
 }
 
-.game,
-.app {
+.game {
     width: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* background: rgba(0, 0, 0, 0.5); */
     border-radius: 15px;
-    /* backdrop-filter: var(--background-filter); */
     padding: 5px;
+    /*border: var(--color-blue) solid;*/
 }
 
 @keyframes slideIn {
@@ -205,35 +218,33 @@ main {
     }
 }
 
-.game,
-.app {
+.game {
     opacity: 0;
     transform: translateY(20px);
     animation: slideIn 0.5s ease-out forwards;
 }
 
-.game img,
-.app img {
+.game img {
     width: 200px;
     height: 200px;
     object-fit: cover;
     border-radius: 15px;
-    transition: 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform, box-shadow;
+    border: var(--color-blue-light) solid;
 }
 
-.game img:hover,
-.app img:hover {
+.game img:hover {
     cursor: pointer;
-    transform: scale(1.05) translateX(-5px) translateY(-5px);
-    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.301);
-    mask-image: linear-gradient();
 }
 
-.game p,
-.app p {
+.game p {
     margin: 0;
     position: static;
     z-index: 3;
     padding: 10px;
     transition: opacity 0.3s ease, visibility 0s 0.3s;
 }
+
+
+/* ---- chat ---- */

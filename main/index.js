@@ -12,3 +12,34 @@ function gradient() {
 }
 
 requestAnimationFrame(gradient);
+
+//---------------------------------------------------------//
+
+const buttons = document.querySelectorAll('.toggle');
+const storageKey = 'selectedButton';
+
+function setActive(buttonId) {
+    sessionStorage.setItem(storageKey, buttonId);
+    updateButtons();
+}
+
+function updateButtons() {
+    const activeButton = sessionStorage.getItem(storageKey);
+
+    buttons.forEach(button => {
+        if (button.id === activeButton) {
+            button.classList.add('active');
+        } else {
+            button.classList.remove('active');
+        }
+    });
+}
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        setActive(button.id);
+    });
+});
+
+// On page load
+updateButtons();

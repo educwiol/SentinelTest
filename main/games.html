@@ -4,23 +4,25 @@
 <title>Home - Google Drive</title>
 
 <body>
+
+    <!--navbar-->
+
     <div class="navbar">
         <div class="navbar-logo">
-            <img src="logo.png" alt="logo">
+            <a href="index.html" class="toggle" id="0"><img src="logo.png" alt="logo"></a>
         </div>
         <hr>
         <hr>
-
         <div class="navbar-items backdrop-blurred">
-            <button><i class="fa-regular fa-gamepad" style="color: #001f3f;"></i> Games</button>
-            <button><i class="fa-regular fa-window" style="color: #001f3f;"></i> Unblocker</button>
-            <button><i class="fa-regular fa-comment" style="color: #001f3f;"></i> Chat</button>
-            <button><i class="fa-regular fa-eye-slash" style="color: #001f3f;"></i> Spoof</button>
+            <a href="games.html"><button class="toggle" id="1"><i class="fa-regular fa-gamepad" style="color: #001f3f;"></i> Games</button></a>
+            <button class="toggle" id="2"><i class="fa-regular fa-window" style="color: #001f3f;"></i> Unblocker</button>
+            <button class="toggle" id="3"><i class="fa-regular fa-comment" style="color: #001f3f;"></i> Chat</button>
+            <button class="toggle" id="4"><i class="fa-regular fa-eye-slash" style="color: #001f3f;"></i> Spoof</button>
         </div>
-
 
     </div>
 
+    <!--game stuff-->
 
     <main>
         <br>
@@ -29,52 +31,45 @@
             <input type="text" placeholder="Search for a Game!" class="search" id="search-input">
         </div>
         <div class="game-container">
-            <div class="game fade-in">
-                <img src="example.jpg" width="200" height="200">
+            <div class="game fade-in" id="game">
+                <div class="game-wrapper">
+                    <img src="example.jpg" width="200" height="200">
+                </div>
                 <p>Test</p>
             </div>
-            <div class="game fade-in">
-                <img src="example.jpg" width="200" height="200">
+            <div class="game fade-in" id="game">
+                <div class="game-wrapper">
+                    <img src="example.jpg" width="200" height="200">
+                </div>
                 <p>Test</p>
             </div>
-            <div class="game fade-in">
-                <img src="example.jpg" width="200" height="200">
+            <div class="game fade-in" id="game">
+                <div class="game-wrapper">
+                    <img src="example.jpg" width="200" height="200">
+                </div>
                 <p>Test</p>
             </div>
-            <div class="game fade-in">
-                <img src="example.jpg" width="200" height="200">
+            <div class="game fade-in" id="game">
+                <div class="game-wrapper">
+                    <img src="example.jpg" width="200" height="200">
+                </div>
                 <p>Test</p>
             </div>
-            <div class="game fade-in">
-                <img src="example.jpg" width="200" height="200">
+            <div class="game fade-in" id="game">
+                <div class="game-wrapper">
+                    <img src="example.jpg" width="200" height="200">
+                </div>
                 <p>Test</p>
             </div>
-            <div class="game fade-in">
-                <img src="example.jpg" width="200" height="200">
-                <p>Test</p>
-            </div>
-            <div class="game fade-in">
-                <img src="example.jpg" width="200" height="200">
-                <p>Test</p>
-            </div>
-            <div class="game fade-in">
-                <img src="example.jpg" width="200" height="200">
-                <p>Test</p>
-            </div>
-            <div class="game fade-in">
-                <img src="example.jpg" width="200" height="200">
-                <p>Test</p>
-            </div>
-            <div class="game fade-in">
-                <img src="example.jpg" width="200" height="200">
-                <p>Test</p>
-            </div>
-            <div class="game fade-in">
-                <img src="example.jpg" width="200" height="200">
+            <div class="game fade-in" id="game">
+                <div class="game-wrapper">
+                    <img src="example.jpg" width="200" height="200">
+                </div>
                 <p>Test</p>
             </div>
         </div>
     </main>
+
 </body>
 
 <footer>
@@ -93,4 +88,92 @@
         }
     </style>
     <script src="index.js"></script>
+
+    <script>
+        // W chatgpt script - Mr. Gold
+
+        const cards = document.querySelectorAll(".game img");
+        const motionMatchMedia = window.matchMedia("(prefers-reduced-motion)");
+        const THRESHOLD = 15;
+
+        cards.forEach(card => {
+            let mouseX = 0;
+            let mouseY = 0;
+            let cardRect = null;
+            let animationFrameId = null;
+            let isHovering = false;
+            let isClicked = false;
+
+            function updateCardTransform() {
+                if (!isHovering || !cardRect) return;
+
+                const horizontal = (mouseX - cardRect.left) / cardRect.width;
+                const vertical = (mouseY - cardRect.top) / cardRect.height;
+                const rotateX = (THRESHOLD / 2 - horizontal * THRESHOLD).toFixed(2);
+                const rotateY = (vertical * THRESHOLD - THRESHOLD / 2).toFixed(2);
+                const scale = isClicked ? 0.95 : 1.05;
+
+                card.style.transform = `
+            perspective(${cardRect.width}px) 
+            rotateX(${rotateY}deg) 
+            rotateY(${rotateX}deg) 
+
+            scale(${scale})
+        `;
+                animationFrameId = null;
+            }
+
+            function handleHover(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+
+                if (!animationFrameId) {
+                    animationFrameId = requestAnimationFrame(updateCardTransform);
+                }
+            }
+
+            function resetStyles() {
+                isHovering = false;
+                isClicked = false;
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                    animationFrameId = null;
+                }
+                card.style.transform = `
+            perspective(${cardRect.width}px) 
+            rotateX(0deg) 
+            rotateY(0deg) 
+ 
+            scale(1)
+        `;
+                card.style.boxShadow = "none";
+            }
+
+            if (!motionMatchMedia.matches) {
+                card.addEventListener("mouseenter", () => {
+                    cardRect = card.getBoundingClientRect();
+                    isHovering = true;
+                    card.style.boxShadow = "rgba(0, 0, 0, 0.233) 0px 0px 15px";
+                });
+
+                card.addEventListener("mousemove", handleHover);
+                card.addEventListener("mouseleave", resetStyles);
+
+                card.addEventListener("mousedown", () => {
+                    isClicked = true;
+                    updateCardTransform();
+                });
+
+                card.addEventListener("mouseup", () => {
+                    isClicked = false;
+                    updateCardTransform();
+                });
+
+                card.addEventListener("mouseleave", () => {
+                    isClicked = false;
+                });
+            }
+        });
+    </script>
+
 </footer>
